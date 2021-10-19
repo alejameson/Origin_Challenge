@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { getAllUsers, getUser } from "../../actions";
+import { getAllActions, getAllUsers, getUser } from "../../actions";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
@@ -35,6 +35,7 @@ export default function Login() {
   useEffect(() => {
     // Llamamos la accion getAllUsers para trar la informacion de todos los usuarios  
     dispatch(getAllUsers());
+    dispatch(getAllActions());
   }, [dispatch]);
 
   const handleChangeUser = (event) => setUser(event.target.value);

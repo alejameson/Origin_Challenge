@@ -5,15 +5,18 @@ const addUserAction = async (req, res, _next) => {
   const { userName, symbol } = req.body;
   try {
     let user = await User.findOne({ where: { userName: userName } });
-    if (exists) return res.status(210).send(`${userName} already has a user`);
 
-    const newUser = await User.create({
-      userName,
-      name,
-      password,
-    });
+    let action = await Action.findOne({ where: { symbol: symbol } });
+    
+    user.addAction(action);
 
-    return res.json(newUser);
+    let userAction = await User.findOne({ where: { userName: userName }, include: [
+      { model: Action, attributes: ["symbol","name","currency"], through: { attributes: [] } }
+    ]})
+
+    console.log(userAction, "USER ACTION");
+
+    return res.json(userAction);
   } catch (err) {
     console.log(err.message);
   }

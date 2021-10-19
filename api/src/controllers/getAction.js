@@ -4,7 +4,7 @@ const axios = require("axios").default;
 
 const getActions = async (req, res) => {
     const response = await axios.get("https://api.twelvedata.com/stocks?source=docs&exchange=NYSE")
-    console.log(response.data.data);
+    /* console.log(response.data.data); */
     const actions = response.data.data;
     actions.map((a) => {
       Action.create({
