@@ -4,7 +4,7 @@ import { Button } from "@chakra-ui/button";
 import { Flex } from "@chakra-ui/layout";
 import "./Autocomplete.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addAction, getAllActions, getUser } from "../../actions";
+import { addAction, addActionsUser, getAllActions, getUser } from "../../actions";
 import { useHistory } from "react-router";
 
 const Autocomplete = ({ lang }) => {
@@ -58,12 +58,14 @@ const Autocomplete = ({ lang }) => {
 
   const { push } = useHistory();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     const obj = {
       userName: user.userName,
       symbol: action,
     }
     dispatch(addAction(obj));
+    dispatch(addActionsUser(action));
     /* dispatch(getUser()); */
     /* push("/"); */
     /* dispatch(getAllActions()); */
@@ -79,7 +81,7 @@ const Autocomplete = ({ lang }) => {
         onChange={handleChange}
       />
       <Flex justifyContent="center">
-      <Button colorScheme="telegram" onClick={handleClick}>➕ AGREGAR SIMBOLO</Button>
+      <Button colorScheme="telegram" onClick={(e) => handleClick(e)}>➕ AGREGAR SIMBOLO</Button>
       </Flex>
       {getSuggestions()}
       {/* <Flex justifyContent="center">

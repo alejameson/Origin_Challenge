@@ -3,6 +3,7 @@ import { Radio, RadioGroup } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/select";
 import { Button } from "@chakra-ui/button";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,6 +78,7 @@ export default function Symbol({ symbol }) {
       <VStack>
         <Flex bgColor="telegram.100" w="100%" justifyContent="space-between">
           <Flex margin="1em">
+            <Link to="/home"><Button>BACK</Button></Link>
             {actionBySymbol != "" ? (
               <Text fontSize="3xl">
                 {actionBySymbol[0].symbol} - {actionBySymbol[0].name} -{" "}

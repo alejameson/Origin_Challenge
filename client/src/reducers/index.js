@@ -1,4 +1,4 @@
-import { ACTION_LOADED, ADD_ACTION, GET_ACTION_BY_SYMBOL, GET_ACTION_DATA, GET_ALL_ACTIONS, GET_ALL_USERS, GET_USER, REMOVE_ACTION } from "../actions";
+import { ACTION_LOADED, ADD_ACTION, ADD_ACTIONS_USER, GET_ACTION_BY_SYMBOL, GET_ACTION_DATA, GET_ALL_ACTIONS, GET_ALL_USERS, GET_USER, REMOVE_ACTION } from "../actions";
 
 const initialState = {
     usersLoaded: [],
@@ -46,6 +46,12 @@ function rootReducer (state = initialState, action){
             return {
                 ...state,
                 userActions: state.userActions.filter((a) => a.symbol !== action.payload),
+            }
+
+        case ADD_ACTIONS_USER: 
+            return {
+                ...state,
+                userActions: state.userActions.concat(state.actionsLoaded.filter((a) => a.symbol === action.payload))
             }
 
         case GET_ACTION_BY_SYMBOL:

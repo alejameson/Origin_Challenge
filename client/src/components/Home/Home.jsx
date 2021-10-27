@@ -22,6 +22,8 @@ export default function Home() {
 
   actions.map(a => symbols.push(a.symbol));
 
+  localStorage.setItem('user', user)
+
   console.log(options, "SYMBOLS")
   useEffect(() => {
     if(symbols.length){

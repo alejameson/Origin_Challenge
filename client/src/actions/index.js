@@ -7,6 +7,7 @@ export const ACTION_LOADED = "ACTION_LOADED";
 export const REMOVE_ACTION = "REMOVE_ACTION";
 export const GET_ACTION_BY_SYMBOL = "GET_ACTION_BY_SYMBOL";
 export const GET_ACTION_DATA = "GET_ACTION_DATA";
+export const ADD_ACTIONS_USER = "ADD_ACTIONS_USER";
 
 export function getAllUsers() {
   return function (dispatch) {
@@ -63,6 +64,15 @@ export function removeActions(actionName) {
     dispatch({
       type: REMOVE_ACTION,
       payload: actionName,
+    });
+  };
+}
+
+export function addActionsUser(actionSymbol){
+  return function (dispatch) {
+    dispatch({
+      type: ADD_ACTIONS_USER,
+      payload: actionSymbol,
     });
   };
 }
